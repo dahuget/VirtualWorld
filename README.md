@@ -1,5 +1,7 @@
-# CSC 305 Introduction to Computer Graphics - Spring 2018
+# Virtual World CSC 305 Computer Graphics - Spring 2018
 
-## Lab Exercises and Code
+Procedural methods used to generate a virtual world. Subdivided into three parts:
 
-Please see the wiki [here](https://github.com/arthurfirmino/icg/wiki/) for lab exercise descriptions.
+* geometry (mesh generation, procedural height generation)
+* rendering (terrain shading, texturing)
+* animation (camera animation)
