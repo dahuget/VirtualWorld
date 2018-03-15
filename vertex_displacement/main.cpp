@@ -27,7 +27,7 @@ int main(int, char**){
 
     // Display callback
     Window& window = app.create_window([&](Window&){
-        glViewport(0,0,width,height);
+        glViewport(0,0,2*width,2*height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         drawTerrain();
     });
