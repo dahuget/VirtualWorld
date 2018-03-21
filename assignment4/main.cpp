@@ -179,8 +179,8 @@ void genTerrainMesh() {
         indices.push_back((j+1)*n_width);
         for(int i=1; i<n_width; ++i) {
             /// TODO: push_back next two vertices HINT: Each one will generate a new triangler
-            indices.push_back(0);
-            indices.push_back(0);
+            indices.push_back((j+i)*n_width);
+            indices.push_back((j+1+i)*n_width);
         }
         ///--- A new strip will begin when this index is reached
         indices.push_back(resPrim);
