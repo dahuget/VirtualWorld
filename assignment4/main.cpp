@@ -239,10 +239,12 @@ void drawTerrain() {
     terrainShader->set_uniform("M", M);
 
     Vec3 look = cameraFront + cameraPos;
-    Mat4x4 V = Mat4x4::Identity(); /// HERE
+    //Mat4x4 V = Mat4x4::Identity(); /// HERE
+    Mat4x4 V = lookAt(cameraPos, look, cameraUp); // pos, look, up
     terrainShader->set_uniform("V", V);
 
-    Mat4x4 P = Mat4x4::Identity(); /// AND HERE
+    //Mat4x4 P = Mat4x4::Identity(); /// AND HERE
+    Mat4x4 P = perspective(80.0f, width/(float)height, 0.1f, 60.0f);
     terrainShader->set_uniform("P", P);
 
     terrainShader->set_uniform("viewPos", cameraPos);
@@ -257,8 +259,10 @@ void drawTerrain() {
     }
     /// TODO: Bind height texture to GL_TEXTURE0 and set uniform noiseTex
 
-
-
+    glActiveTexture(GL_TEXTURE0);
+    heightTexture->bind();
+    //uniform sampler2D noiseTex;
+    terrainShader->set_uniform("noiseTex", 1);
 
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
@@ -268,7 +272,7 @@ void drawTerrain() {
     glEnable(GL_PRIMITIVE_RESTART);
     glPrimitiveRestartIndex(resPrim);
     /// TODO: Uncomment line below once this function is implemented
-    // terrainMesh->draw();
+    terrainMesh->draw();
 
     terrainShader->unbind();
 }
