@@ -7,7 +7,8 @@ using namespace OpenGP;
 
 inline float lerp(float x, float y, float t) {
     /// TODO: Implement linear interpolation between x and y
-    return 0.0f;
+    /// (1 - t) * v0 + t * v1;
+    return (1 - t) * x + t * y;
 }
 
 inline float fade(float t) {
