@@ -179,8 +179,8 @@ void genTerrainMesh() {
         indices.push_back((j+1)*n_width);
         for(int i=1; i<n_width; ++i) {
             /// TODO: push_back next two vertices HINT: Each one will generate a new triangler
-            indices.push_back((j+i)*n_width);
-            indices.push_back((j+1+i)*n_width);
+            indices.push_back(j*n_width + i); // i
+            indices.push_back((j+1)*n_width + i); // i+1
         }
         ///--- A new strip will begin when this index is reached
         indices.push_back(resPrim);
@@ -266,7 +266,7 @@ void drawTerrain() {
 
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
-    // glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     terrainMesh->set_attributes(*terrainShader);
     terrainMesh->set_mode(GL_TRIANGLE_STRIP);
     glEnable(GL_PRIMITIVE_RESTART);
