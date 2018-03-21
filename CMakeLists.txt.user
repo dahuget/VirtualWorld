@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.2.1, 2018-03-14T23:30:22. -->
+<!-- Written by QtCreator 4.2.1, 2018-03-15T18:06:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -346,7 +346,7 @@
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguation.Title">vertex_displacement</value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments"></value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/private/var/folders/13/_cgcj4b53mn3rckcdp_gl4tm0000gq/T/qtc-cmake-pOiZJF/vertex_displacement</value>
+    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/Users/danahuget/Documents/CSC305/A4/build-VirtualWorld-Desktop_Qt_5_8_0_clang_64bit-Default/vertex_displacement</value>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">vertex_displacement</value>
@@ -402,7 +402,7 @@
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguation.Title">assignment4</value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments"></value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/private/var/folders/13/_cgcj4b53mn3rckcdp_gl4tm0000gq/T/qtc-cmake-pOiZJF/assignment4</value>
+    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/Users/danahuget/Documents/CSC305/A4/build-VirtualWorld-Desktop_Qt_5_8_0_clang_64bit-Default/assignment4</value>
     <value type="int" key="PE.EnvironmentAspect.Base">-1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">assignment4</value>
