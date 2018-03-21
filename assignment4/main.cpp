@@ -62,7 +62,7 @@ int main(int, char**){
 
     // Display callback
     Window& window = app.create_window([&](Window&){
-        glViewport(0,0,width,height);
+        glViewport(0,0,width*2,height*2);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         drawSkybox();
@@ -153,8 +153,8 @@ void init(){
 void genTerrainMesh() {
     /// Create a flat (z=0) mesh for the terrain with given dimensions, using triangle strips
     terrainMesh = std::unique_ptr<GPUMesh>(new GPUMesh());
-    int n_width = 256; // Grid resolution
-    int n_height = 256;
+    int n_width = 32; // Grid resolution
+    int n_height = 32;
     float f_width = 5.0f; // Grid width, centered at 0,0
     float f_height = 5.0f;
 
@@ -166,7 +166,6 @@ void genTerrainMesh() {
     for(int j=0; j<n_height; ++j) {
         for(int i=0; i<n_width; ++i) {
             /// TODO: calculate vertex positions, texture indices done for you
-            /// Vec3(i/(float)n_width, j/(float)n_height, 0.0f)
             points.push_back(Vec3(i/(float)n_width, j/(float)n_height, 0.0f));
             texCoords.push_back( Vec2( i/(float)(n_width-1), j/(float)(n_height-1)) );
         }
@@ -262,7 +261,7 @@ void drawTerrain() {
     glActiveTexture(GL_TEXTURE0);
     heightTexture->bind();
     //uniform sampler2D noiseTex;
-    terrainShader->set_uniform("noiseTex", 1);
+    terrainShader->set_uniform("noiseTex", 0);
 
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
