@@ -124,17 +124,17 @@ float* perlin2D(const int width, const int height, const int period) {
             Vec2 d(dx-1,    1 - dy); // bottomright
 
             ///TODO: Get scalars at corners HINT: take dot product of gradient and corresponding direction
-            float s = 0;
-            float t = 0;
-            float u = 0;
-            float v = 0;
+            float s = a.dot(topleft);
+            float t = b.dot(topright);
+            float u = c.dot(bottomleft);
+            float v = d.dot(bottomright);
 
             ///TODO: Interpolate along "x" HINT: use fade(dx) as t
-            float st = 0;
-            float uv = 0;
+            float st = lerp(s,t,fade(dx));
+            float uv = lerp(u,v,fade(dx));
 
             ///TODO: Interpolate along "y"
-            float noise = 0;
+            float noise = lerp(st, uv, fade(dy));
 
             perlin_data[i+j*height] = noise;
         }
