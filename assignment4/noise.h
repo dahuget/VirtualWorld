@@ -7,8 +7,7 @@ using namespace OpenGP;
 
 inline float lerp(float x, float y, float t) {
     /// TODO: Implement linear interpolation between x and y
-    /// (1 - t) * v0 + t * v1;
-    return (1 - t) * x + t * y;
+    return x + t * (y - x);
 }
 
 inline float fade(float t) {
@@ -98,6 +97,7 @@ float* perlin2D(const int width, const int height, const int period) {
     float frequency = 1.0f / period;
 
     float *perlin_data = new float[width*height];
+    // iterate over each entry in gradient array
     for (int i = 0; i < width; ++ i) {
         for (int j = 0; j < height; ++ j) {
 
