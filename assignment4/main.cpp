@@ -256,8 +256,8 @@ void drawTerrain() {
         terrainShader->set_uniform(it->first.c_str(), 1+i);
         ++i;
     }
-    /// TODO: Bind height texture to GL_TEXTURE0 and set uniform noiseTex
 
+    /// TODO: Bind height texture to GL_TEXTURE0 and set uniform noiseTex
     glActiveTexture(GL_TEXTURE0);
     heightTexture->bind();
     //uniform sampler2D noiseTex;
@@ -265,6 +265,7 @@ void drawTerrain() {
 
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
+    // wire frame
     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     terrainMesh->set_attributes(*terrainShader);
     terrainMesh->set_mode(GL_TRIANGLE_STRIP);

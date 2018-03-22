@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 #include "OpenGP/GL/Application.h"
+#include <stdio.h>
+#include <math.h>
 
 using namespace OpenGP;
 
@@ -47,7 +49,9 @@ R32FTexture* fBm2DTexture() {
     float f = 1.0f;
     for (int i = 0; i < octaves; ++i) {
         /// TODO: Implement this step according to Musgraves paper on fBM
-
+        /* compute weight for each frequency */
+        exponent_array[i] = pow(f, -H);
+        f *= lacunarity;
     }
 
     for (int i = 0; i < width; ++ i) {
@@ -56,7 +60,7 @@ R32FTexture* fBm2DTexture() {
             int J = j;
             for(int k = 0; k < octaves; ++k) {
                 /// TODO: Get perlin noise at I,J, add offset, multiply by proper term and add to noise_data
-                noise_data[i+j*height] += 0;
+                noise_data[i+j*height] += (perlin_data[I+J] + offset) * exponent_array[k];
 
                 ///--- Point to sample at next octave
                 I *= (int) lacunarity;
