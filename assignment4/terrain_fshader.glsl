@@ -45,7 +45,6 @@ void main() {
     //c = (N +vec3(1.0)) / 2.0;
 
     /// TODO: Calculate ambient, diffuse, and specular lighting
-    // diffuse = -dot(normal, lightDir)
     /// HINT: max(,) dot(,) reflect(,) normalize()
     vec3 ambient = vec3(0.2, 0.2, 0.2);
     float diffuse = max(dot(N,lightDir), 0.0);
@@ -54,8 +53,8 @@ void main() {
     vec3 H = normalize(lightDir + E);
     vec3 reflectDir = reflect(-lightDir, N);
     float shininess = 8.0;
-    float specular = pow(max(dot(E, reflectDir), 0.0), shininess);
-
+    float spec = pow(max(dot(E, reflectDir), 0.0), shininess);
+    vec3 specular = c*spec;
     c += ambient + diffuse + specular;
 
     color = vec4(c,1);
