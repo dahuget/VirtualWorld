@@ -95,9 +95,22 @@ int main(int, char**){
         mouse = m.position;
     });
 
+    Vec3 key(0,0,0);
     window.add_listener<KeyEvent>([&](const KeyEvent &k){
         ///--- TODO: Implement WASD keys HINT: compare k.key to GLFW_KEY_W
+        //key selection case
+        if(k.key == GLFW_KEY_W && !k.released){
+            // move camera back
+            float sensitivity = key[2] + 0.005f;
+            // increase z-coordinate so camera moves back
+            key[2] = sensitivity;
 
+            cameraPos = key;
+        }
+        // key release case
+        if(k.key == GLFW_KEY_W && k.released){
+
+        }
     });
 
     return app.run();

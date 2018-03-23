@@ -48,15 +48,15 @@ void main() {
     // diffuse = -dot(normal, lightDir)
     /// HINT: max(,) dot(,) reflect(,) normalize()
     vec3 ambient = vec3(0.2, 0.2, 0.2);
-    vec3 diffuse = max(dot(N,lightDir), 0.0);
+    float diffuse = max(dot(N,lightDir), 0.0);
     // we have light direction, so set up eye and half vectors
     vec3 E = normalize(-fragPos);
     vec3 H = normalize(lightDir + E);
     vec3 reflectDir = reflect(-lightDir, N);
     float shininess = 8.0;
-    vec3 specular = pow(max(dot(E, reflectDir), 0.0), shininess);
+    float specular = pow(max(dot(E, reflectDir), 0.0), shininess);
 
-    vec3 c = ambient + diffuse + specular;
+    c += ambient + diffuse + specular;
 
     color = vec4(c,1);
 }
