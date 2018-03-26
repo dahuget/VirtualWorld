@@ -22,6 +22,7 @@ inline float rand01() {
 
 float* perlin2D(const int width, const int height, const int period=64);
 
+/* --- Basic 2.1.3 --- */
 /// Generates a heightmap using fractional brownian motion
 R32FTexture* fBm2DTexture() {
 
@@ -79,6 +80,7 @@ R32FTexture* fBm2DTexture() {
     return _tex;
 }
 
+/* --- Basic 2.1.2 --- */
 float* perlin2D(const int width, const int height, const int period) {
 
     ///--- Precompute random gradients

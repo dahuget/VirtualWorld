@@ -14,6 +14,7 @@ out vec3 fragPos;
 
 void main() {
     /// TODO: Get height h at uv
+    /* --- Basic 2.1 --- */
     float h = texture(noiseTex, uv).x;
 
     uv = vtexcoord;

@@ -95,6 +95,7 @@ int main(int, char**){
         mouse = m.position;
     });
 
+    /* --- Basic 4.1.1 --- */
     Vec3 key(0,0,0);
     window.add_listener<KeyEvent>([&](const KeyEvent &k){
         ///--- TODO: Implement WASD keys HINT: compare k.key to GLFW_KEY_W
@@ -230,17 +231,18 @@ void drawSkybox() {
     Mat4x4 P = perspective(80.0f, width/(float)height, 0.1f, 60.0f);
     skyboxShader->set_uniform("P", P);
 
+    /* --- Basic 3.1.3 --- */
     /// TODO: Bind Textures and set uniform
     /// HINT: Use GL_TEXTURE0, and texture type GL_TEXTURE_CUBE_MAP
     glActiveTexture(GL_TEXTURE0);
     glEnable(GL_TEXTURE_CUBE_MAP);
-    glGenTextures(1, &skyboxTexture);
+    glGenTextures(0, &skyboxTexture);
     glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
     skyboxShader->set_uniform("skybox", 0);
 
     /// TODO: Set atrributes, draw cube using GL_TRIANGLE_STRIP mode
+    /* --- Basic 2.1.1 --- */
     glEnable(GL_DEPTH_TEST);
-
     // wire frame
     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     skyboxMesh->set_attributes(*skyboxShader);
@@ -250,7 +252,7 @@ void drawSkybox() {
 
     skyboxMesh->draw();
 
-    glDeleteTextures(1, &skyboxTexture);
+    glDeleteTextures(0, &skyboxTexture);
     skyboxShader->unbind();
 }
 
@@ -286,10 +288,11 @@ void drawTerrain() {
     heightTexture->bind();
     terrainShader->set_uniform("noiseTex", 0);
 
+    /* --- Basic 2.1.1 --- */
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
     // wire frame
-    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     terrainMesh->set_attributes(*terrainShader);
     terrainMesh->set_mode(GL_TRIANGLE_STRIP);
     glEnable(GL_PRIMITIVE_RESTART);
