@@ -40,8 +40,11 @@ void main() {
     /* --- Advanced 2.2.1 --- */ // ????
     /// TODO: Texture according to height and slope
     /// HINT: Read noiseTex for height at uv
-    // Sample height from texture and normalize to [0,1]
-    vec3 c = vec3((texture(noiseTex, uv).r + 1.0f)/2.0f);
+    // Sample height from texture and normalize to [0,1]]
+    // output color = color of the texture at the specified UV
+    vec3 c = vec3((texture(noiseTex, uv).z + 1.0f)/2.0f);
+    //vec3 c = vec3(texture(noiseTex, uv).z*2.0f -1.0f);
+    //vec3 c = vec3((texture(noiseTex, uv).z - 0.5f) * 2.0f);
 
     // (Optional): Visualize normals as RGB vector
     //c = (N +vec3(1.0)) / 2.0;
