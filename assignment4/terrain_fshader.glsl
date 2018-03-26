@@ -46,16 +46,18 @@ void main() {
 
     /// TODO: Calculate ambient, diffuse, and specular lighting
     /// HINT: max(,) dot(,) reflect(,) normalize()
+    // Phong Shader implementation from https://www.opengl.org/sdk/docs/tutorials/ClockworkCoders/lighting.php
     vec3 ambient = vec3(0.2, 0.2, 0.2);
-    float diffuse = max(dot(N,lightDir), 0.0);
+    //vec3 diffuse = vec3(0.8, 0.8, 0.8);
+    vec3 diffuse = max(dot(N,lightDir), 0.0)*c;
     // we have light direction, so set up eye and half vectors
     vec3 E = normalize(-fragPos);
     vec3 H = normalize(lightDir + E);
-    vec3 reflectDir = reflect(-lightDir, N);
+    vec3 reflectDir = normalize(-reflect(lightDir, N));
     float shininess = 8.0;
-    float spec = pow(max(dot(E, reflectDir), 0.0), shininess);
-    vec3 specular = c*spec;
-    c += (ambient + diffuse + specular);
+    vec3 specular = pow(max(dot(reflectDir, E), 0.0), 0.3*shininess)*c;
+    //vec3 specular = c*spec;
+    c = (ambient + diffuse + specular);
 
     color = vec4(c,1);
 }
