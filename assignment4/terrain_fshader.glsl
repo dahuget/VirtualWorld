@@ -25,6 +25,7 @@ void main() {
     // Texture size in pixels
     ivec2 size = textureSize(noiseTex, 0);
 
+    /* --- Basic 3.1.1 --- */
     /// TODO: Calculate surface normal N
     // normal at the point will be cross product of two tangent vectors normalized
     /// HINT: Use textureOffset(,,) to read height at uv + pixelwise offset
@@ -36,6 +37,7 @@ void main() {
     vec3 D = vec3( uv.x, uv.y - 1.0/size.y, textureOffset(noiseTex, uv, ivec2(0,-1)) );
     vec3 N = normalize( cross(normalize(A-B), normalize(C-D)) );
 
+    /* --- Advanced 2.2.1 --- */ // ????
     /// TODO: Texture according to height and slope
     /// HINT: Read noiseTex for height at uv
     // Sample height from texture and normalize to [0,1]
@@ -44,6 +46,7 @@ void main() {
     // (Optional): Visualize normals as RGB vector
     //c = (N +vec3(1.0)) / 2.0;
 
+    /* --- Basic 3.1.1 --- */
     /// TODO: Calculate ambient, diffuse, and specular lighting
     /// HINT: max(,) dot(,) reflect(,) normalize()
     // Phong Shader implementation from https://www.opengl.org/sdk/docs/tutorials/ClockworkCoders/lighting.php
