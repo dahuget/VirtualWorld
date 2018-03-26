@@ -234,13 +234,12 @@ void drawSkybox() {
     /// HINT: Use GL_TEXTURE0, and texture type GL_TEXTURE_CUBE_MAP
     glActiveTexture(GL_TEXTURE0);
     glEnable(GL_TEXTURE_CUBE_MAP);
-    glGenTextures(1, &skyboxTexture);
+    glGenTextures(0, &skyboxTexture);
     glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
     skyboxShader->set_uniform("skybox", 0);
 
     /// TODO: Set atrributes, draw cube using GL_TRIANGLE_STRIP mode
     glEnable(GL_DEPTH_TEST);
-
     // wire frame
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     skyboxMesh->set_attributes(*skyboxShader);
@@ -250,7 +249,7 @@ void drawSkybox() {
 
     skyboxMesh->draw();
 
-    glDeleteTextures(1, &skyboxTexture);
+    glDeleteTextures(0, &skyboxTexture);
     skyboxShader->unbind();
 }
 
@@ -289,7 +288,7 @@ void drawTerrain() {
     // Draw terrain using triangle strips
     glEnable(GL_DEPTH_TEST);
     // wire frame
-    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     terrainMesh->set_attributes(*terrainShader);
     terrainMesh->set_mode(GL_TRIANGLE_STRIP);
     glEnable(GL_PRIMITIVE_RESTART);

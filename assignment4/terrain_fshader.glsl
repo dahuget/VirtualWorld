@@ -55,7 +55,7 @@ void main() {
     float shininess = 8.0;
     float spec = pow(max(dot(E, reflectDir), 0.0), shininess);
     vec3 specular = c*spec;
-    c += ambient + diffuse + specular;
+    c += (ambient + diffuse + specular);
 
     color = vec4(c,1);
 }
