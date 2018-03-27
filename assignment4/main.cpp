@@ -236,7 +236,7 @@ void drawSkybox() {
     /// HINT: Use GL_TEXTURE0, and texture type GL_TEXTURE_CUBE_MAP
     glActiveTexture(GL_TEXTURE0);
     glEnable(GL_TEXTURE_CUBE_MAP);
-    glGenTextures(0, &skyboxTexture);
+    //glGenTextures(0, &skyboxTexture);
     glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
     skyboxShader->set_uniform("skybox", 0);
 
@@ -244,7 +244,7 @@ void drawSkybox() {
     /* --- Basic 2.1.1 --- */
     glEnable(GL_DEPTH_TEST);
     // wire frame
-    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     skyboxMesh->set_attributes(*skyboxShader);
     skyboxMesh->set_mode(GL_TRIANGLE_STRIP);
     glEnable(GL_PRIMITIVE_RESTART);
@@ -252,7 +252,7 @@ void drawSkybox() {
 
     skyboxMesh->draw();
 
-    glDeleteTextures(0, &skyboxTexture);
+    //glDeleteTextures(0, &skyboxTexture);
     skyboxShader->unbind();
 }
 

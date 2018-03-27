@@ -61,7 +61,7 @@ R32FTexture* fBm2DTexture() {
             int J = j;
             for(int k = 0; k < octaves; ++k) {
                 /// TODO: Get perlin noise at I,J, add offset, multiply by proper term and add to noise_data
-                noise_data[i+j*height] += (perlin_data[I+J] + offset) * exponent_array[k];
+                noise_data[i+j*height] += (perlin_data[(I%width)+(J%height)*height] + offset) * exponent_array[k];
 
                 ///--- Point to sample at next octave
                 I *= (int) lacunarity;
