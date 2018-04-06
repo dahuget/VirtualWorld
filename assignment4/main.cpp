@@ -102,15 +102,12 @@ int main(int, char**){
         //key selection case
         if(k.key == GLFW_KEY_W && !k.released){
             // move camera back
-            float sensitivity = key[2] + 0.005f;
-            // increase z-coordinate so camera moves back
-            key[2] = sensitivity;
-
-            cameraPos = key;
+            cameraPos += cameraFront * 0.1f;
         }
         // key release case
-        if(k.key == GLFW_KEY_W && k.released){
-
+        if(k.key == GLFW_KEY_S && !k.released){
+            // move camera back
+            cameraPos -= cameraFront * 0.1f;
         }
     });
 
