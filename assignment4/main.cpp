@@ -283,6 +283,9 @@ void drawTerrain() {
 
     terrainShader->set_uniform("viewPos", cameraPos);
 
+    float time_s = glfwGetTime();
+    terrainShader->set_uniform("time_s", time_s);
+
     // Bind textures
     int i = 0;
     for( std::map<std::string, std::unique_ptr<RGBA8Texture>>::iterator it = terrainTextures.begin(); it != terrainTextures.end(); ++it ) {
