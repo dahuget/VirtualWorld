@@ -18,6 +18,10 @@ void main() {
 
     float h = texture(noiseTex, vtexcoord).x;
 
+    if(h < 0){
+        h = (0.0f);
+    }
+
     uv = vtexcoord;
     fragPos = vposition.xyz + vec3(0,0,h);
     gl_Position = P*V*M*vec4(vposition.x, vposition.y, vposition.z + h, 1.0);
