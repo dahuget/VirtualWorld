@@ -176,8 +176,8 @@ void init(){
 void genTerrainMesh() {
     /// Create a flat (z=0) mesh for the terrain with given dimensions, using triangle strips
     terrainMesh = std::unique_ptr<GPUMesh>(new GPUMesh());
-    int n_width = 32; // Grid resolution
-    int n_height = 32;
+    int n_width = 256; // Grid resolution
+    int n_height = 256;
     float f_width = 5.0f; // Grid width, centered at 0,0
     float f_height = 5.0f;
 
