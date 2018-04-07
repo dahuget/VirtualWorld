@@ -99,15 +99,27 @@ int main(int, char**){
     Vec3 key(0,0,0);
     window.add_listener<KeyEvent>([&](const KeyEvent &k){
         ///--- TODO: Implement WASD keys HINT: compare k.key to GLFW_KEY_W
-        //key selection case
+        //key forward case
         if(k.key == GLFW_KEY_W && !k.released){
-            // move camera back
+            // move camera forward
             cameraPos += cameraFront * 0.1f;
         }
-        // key release case
+        // key backward case
         if(k.key == GLFW_KEY_S && !k.released){
             // move camera back
             cameraPos -= cameraFront * 0.1f;
+        }
+        // key left case
+        if(k.key == GLFW_KEY_A && !k.released){
+            // move camera left
+            Vec3 temp = cameraFront.cross(cameraUp).normalized();
+            cameraPos -= temp * 0.1f;
+        }
+        // key right case
+        if(k.key == GLFW_KEY_D && !k.released){
+            // move camera left
+            Vec3 temp = cameraFront.cross(cameraUp).normalized();
+            cameraPos += temp * 0.1f;
         }
     });
 
