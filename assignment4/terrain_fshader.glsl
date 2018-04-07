@@ -17,6 +17,24 @@ in vec3 fragPos;
 
 out vec4 color;
 
+vec3 phong (vec4 color, vec3 lightDir, vec3 N){
+    /* --- Basic 3.1.1 --- */
+    /// TODO: Calculate ambient, diffuse, and specular lighting
+    /// HINT: max(,) dot(,) reflect(,) normalize()
+    // Phong Shader implementation from https://www.opengl.org/sdk/docs/tutorials/ClockworkCoders/lighting.php
+    vec3 ambient = vec3(0.1, 0.1, 0.1);
+    //vec3 diffuse = vec3(0.8, 0.8, 0.8);
+    vec3 diffuse = max(-dot(N,lightDir), 0.0)*color.rgb;
+    // we have light direction, so set up eye and half vectors
+    vec3 E = normalize(-fragPos);
+    vec3 H = normalize(lightDir + E);
+    vec3 reflectDir = normalize(-reflect(lightDir, N));
+    float shininess = 5.0;
+    vec3 specular = pow(max(dot(reflectDir, E), 0.0), 0.3*shininess)*color.rgb;
+    //vec3 specular = c*spec;
+    return vec3(ambient + diffuse + specular);
+}
+
 void main() {
 
     // Directional light source
@@ -52,35 +70,25 @@ void main() {
     // check height, below zero is water
     if(fragPos.z <= 0.0f) {
         color = texture(water, uv).rgba;
+        c = phong(color, lightDir, N);
+        color = vec4(c,1);
     } // high altitude is snow
     else if(fragPos.z >0.5f){
         color = texture(snow, uv).rgba;
+        c = phong(color, lightDir, N);
+        color = vec4(c,1);
     } // steep slope is rock
     else {
         if(angle > 0.5f){
             color = texture(rock, uv).rgba;
+            c = phong(color, lightDir, N);
+            color = vec4(c,1);
         } else{
-        color = texture(grass, uv).rgba;
+            color = texture(grass, uv).rgba;
+            c = phong(color, lightDir, N);
+            color = vec4(c,1);
         }
     }
-
-    /* --- Basic 3.1.1 --- */
-    /// TODO: Calculate ambient, diffuse, and specular lighting
-    /// HINT: max(,) dot(,) reflect(,) normalize()
-    // Phong Shader implementation from https://www.opengl.org/sdk/docs/tutorials/ClockworkCoders/lighting.php
-    vec3 ambient = vec3(0.1, 0.1, 0.1);
-    //vec3 diffuse = vec3(0.8, 0.8, 0.8);
-    vec3 diffuse = max(dot(N,lightDir), 0.0)*color.rgb;
-    // we have light direction, so set up eye and half vectors
-    vec3 E = normalize(-fragPos);
-    vec3 H = normalize(lightDir + E);
-    vec3 reflectDir = normalize(-reflect(lightDir, N));
-    float shininess = 8.0;
-    vec3 specular = pow(max(dot(reflectDir, E), 0.0), 0.3*shininess)*color.rgb;
-    //vec3 specular = c*spec;
-    c = (ambient + diffuse + specular);
-
-    color = vec4(c,1);
 
 }
 )"
