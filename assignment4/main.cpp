@@ -112,13 +112,13 @@ int main(int, char**){
         // key left case
         if(k.key == GLFW_KEY_A && !k.released){
             // move camera left
-            Vec3 temp = cameraFront.cross(cameraUp).normalized();
+            Vec3 temp = cameraFront.cross(cameraUp).normalized(); // orthogonal vector
             cameraPos -= temp * 0.1f;
         }
         // key right case
         if(k.key == GLFW_KEY_D && !k.released){
             // move camera left
-            Vec3 temp = cameraFront.cross(cameraUp).normalized();
+            Vec3 temp = cameraFront.cross(cameraUp).normalized(); // orthogonal vector
             cameraPos += temp * 0.1f;
         }
     });

@@ -40,6 +40,7 @@ vec3 phong (vec4 color, vec3 lightDir, vec3 N){
 
 // translates the normal vector for water
 vec3 waves(vec3 N){
+    /* --- Advanced 3.2.1 --- */
     float M_PI = 3.14159265359f;
     float freq = M_PI*time_s;
     float x_coor = cos(freq) + N.x;
@@ -60,7 +61,6 @@ void main() {
     // normal at the point will be cross product of two tangent vectors normalized
     /// HINT: Use textureOffset(,,) to read height at uv + pixelwise offset
     /// HINT: Account for texture x,y dimensions in world space coordinates (default f_width=f_height=5)
-    // A = vec3(uv.x + .0/width, uv.y, texture offset function(noiseTex, center point uv, ivec2(1,0)))
     vec3 A = vec3( uv.x + 1.0/size.x, uv.y, textureOffset(noiseTex, uv, ivec2(1,0)) );
     vec3 B = vec3( uv.x - 1.0/size.x, uv.y, textureOffset(noiseTex, uv, ivec2(-1,0)) );
     vec3 C = vec3( uv.x, uv.y + 1.0/size.y, textureOffset(noiseTex, uv, ivec2(0,1)) );
@@ -75,12 +75,12 @@ void main() {
 
     // "Slope" is the absolute value of the dot product of the normal and "up" vector
     // aka the angle between the normal and a vertical line
-    //  the z coordinate is the cosine, so you need to take the arccos of z acos(z)
     float angle = (dot(N, vec3(0,0,1)));
 
     // check height, below zero is water
     if(fragPos.z <= 0.0f) {
         color = texture(water, uv).rgba;
+        // make waves translate over time
         N = normalize(waves(N));
         vec3 c = phong(color, lightDir, N);
         color = vec4(c,1);
@@ -89,7 +89,7 @@ void main() {
         color = texture(snow, uv).rgba;
         vec3 c = phong(color, lightDir, N);
         color = vec4(c,1);
-    } // steep slope is rock
+    } // steep slope is rock, otherwise grass
     else {
         if(angle > 0.5f){
             color = texture(rock, uv).rgba;
