@@ -18,7 +18,7 @@ void main() {
 
     float h = texture(noiseTex, vtexcoord).x;
 
-    if(h < 0){
+    if(h < 0){ // water
         h = (0.0f);
     }
 
